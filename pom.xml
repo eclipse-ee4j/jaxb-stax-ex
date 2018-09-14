@@ -23,22 +23,15 @@
     <artifactId>stax-ex</artifactId>
     <version>1.8.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-
     <name>Extended StAX API</name>
-    <inceptionYear>2006</inceptionYear>
     <description>Extensions to JSR-173 StAX API.</description>
 
     <scm>
-        <connection>scm:git:ssh://git@github.com/eclipse-ee4j/metro-stax-ex.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/metro-stax-ex.git</developerConnection>
-        <url>https://github.com/eclipse-ee4j/metro-stax-ex</url>
+        <connection>scm:git:ssh://git@github.com/eclipse-ee4j/jaxb-stax-ex.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/eclipse-ee4j/jaxb-stax-ex.git</developerConnection>
+        <url>https://github.com/eclipse-ee4j/jaxb-stax-ex</url>
         <tag>HEAD</tag>
     </scm>
-
-    <issueManagement>
-        <system>IssueTracker</system>
-        <url>https://github.com/eclipse-ee4j/metro-stax-ex/issues</url>
-    </issueManagement>
 
     <licenses>
         <license>
@@ -47,11 +40,6 @@
             <distribution>repo</distribution>
         </license>
     </licenses>
-
-    <organization>
-        <name>Oracle</name>
-        <url>http://www.oracle.com</url>
-    </organization>
 
     <developers>
         <developer>
@@ -65,6 +53,28 @@
             <email>Zheng.Jun.Li@oracle.com</email>
         </developer>
     </developers>
+
+    <inceptionYear>2006</inceptionYear>
+
+    <organization>
+        <name>Oracle</name>
+        <url>http://www.oracle.com</url>
+    </organization>
+
+    <issueManagement>
+        <system>IssueTracker</system>
+        <url>https://github.com/eclipse-ee4j/jaxb-stax-ex/issues</url>
+    </issueManagement>
+
+    <mailingLists>
+        <mailingList>
+            <name>Eclipse Implementation of JAXB mailing list</name>
+            <post>jaxb-impl-dev@eclipse.org</post>
+            <subscribe>https://dev.eclipse.org/mailman/listinfo/jaxb-impl-dev</subscribe>
+            <unsubscribe>https://dev.eclipse.org/mailman/listinfo/jaxb-impl-dev</unsubscribe>
+            <archive>https://dev.eclipse.org/mhonarc/lists/jaxb-impl-dev</archive>
+        </mailingList>
+    </mailingLists>
 
     <properties>
         <findbugs.exclude />
