@@ -31,3 +31,7 @@
 .commented
 .svnignore
 .svn
+/CONTRIBUTING.md
+/LICENSE.md
+/etc/config/copyright-exclude
+/src/main/resources/META-INF/LICENSE.md
