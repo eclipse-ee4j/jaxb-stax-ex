@@ -12,7 +12,7 @@ module org.jvnet.staxex {
     requires java.logging;
     requires java.xml.bind;
 
-    requires transitive java.activation;
+    requires transitive jakarta.activation;
     requires transitive java.xml;
     exports org.jvnet.staxex;
     exports org.jvnet.staxex.util;
