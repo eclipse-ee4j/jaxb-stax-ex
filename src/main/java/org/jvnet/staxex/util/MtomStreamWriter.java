@@ -17,10 +17,9 @@ import javax.xml.stream.XMLStreamWriter;
  * A {@link XMLStreamWriter} that used for MTOM encoding may provide its own
  * {@link AttachmentMarshaller}. The marshaller could do processing based on
  * MTOM threshold, and make decisions about inlining the attachment data or not.
+ * See also JAXBMessage and MtomCodec.
  *
  * @author Jitendra Kotamraju
- * @see JAXBMessage
- * @see MtomCodec
  */
 public interface MtomStreamWriter {
     AttachmentMarshaller getAttachmentMarshaller();
