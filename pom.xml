@@ -254,7 +254,7 @@
                             <goal>testCompile</goal>
                         </goals>
                         <configuration>
-                            <release>7</release>
+                            <release>11</release>
                         </configuration>
                     </execution>
                 </executions>
