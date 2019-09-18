@@ -34,7 +34,7 @@ public class ByteCodeVersionTest {
     @Test
     public void testClassByteCodeVersion() {
         // class files for JDK 7
-        verifyClassFileFormat("/org/jvnet/staxex/MtomEnabled.class", 0x33);
+        verifyClassFileFormat("/org/jvnet/staxex/MtomEnabled.class", 0x34);
     }
     
     private static void verifyClassFileFormat(String resource, int expectedClassVersion) {
