@@ -77,7 +77,7 @@
         <copyright.update>false</copyright.update>
         <spotbugs.skip>false</spotbugs.skip>
         <spotbugs.threshold>Low</spotbugs.threshold>
-        <spotbugs.version>3.1.11</spotbugs.version>
+        <spotbugs.version>3.1.12.1</spotbugs.version>
 
         <config.dir>${project.basedir}/etc/config</config.dir>
         <legal.doc.source>${project.basedir}</legal.doc.source>
@@ -93,7 +93,7 @@
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>2.3.3</version>
+            <version>2.3.2</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
@@ -115,7 +115,7 @@
                 </plugin>
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.0</version>
+                    <version>3.8.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -146,7 +146,7 @@
                 <plugin>
                     <groupId>org.glassfish.copyright</groupId>
                     <artifactId>glassfish-copyright-maven-plugin</artifactId>
-                    <version>2.1</version>
+                    <version>2.2</version>
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
@@ -156,12 +156,12 @@
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <version>4.2.0</version>
+                    <version>4.2.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>3.0.1</version>
+                    <version>3.1.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -185,10 +185,10 @@
                 <configuration>
                     <rules>
                         <requireJavaVersion>
-                            <version>[1.7,)</version>
+                            <version>[11,)</version>
                         </requireJavaVersion>
                         <requireMavenVersion>
-                            <version>[3.0.3,)</version>
+                            <version>[3.6.0,)</version>
                         </requireMavenVersion>
                         <dependencyConvergence />
                     </rules>
@@ -222,39 +222,24 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>9</source>
+                    <target>9</target>
+                    <compilerArgs>
+                        <arg>-Xlint:all</arg>
+                    </compilerArgs>
+                </configuration>
                 <executions>
                     <execution>
-                        <!--compile all as JPMS module-->
-                        <id>default-compile</id>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                        <configuration>
-                            <source>9</source>
-                            <target>9</target>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <!--replace classes with source/target 7-->
                         <id>base-compile</id>
                         <goals>
                             <goal>compile</goal>
                         </goals>
                         <configuration>
-                            <release>7</release>
+                            <release>8</release>
                             <excludes>
                                 <exclude>module-info.java</exclude>
                             </excludes>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <!--compile test classes with source/target 7-->
-                        <id>default-testCompile</id>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                        <configuration>
-                            <release>11</release>
                         </configuration>
                     </execution>
                 </executions>
@@ -341,7 +326,6 @@
                         <configuration>>
                             <instructions>
                                 <Implementation-Build-Id>${project.version} - ${scmBranch}-${buildNumber}, ${timestamp}</Implementation-Build-Id>
-                                <_noee>true</_noee>
                                 <Import-Package>
                                     javax.activation;version=!,
                                     javax.xml.bind.attachment;version=!,
@@ -351,6 +335,20 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <Implementation-Build-Id>${project.version} - ${scmBranch}-${buildNumber}, ${timestamp}</Implementation-Build-Id>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>
