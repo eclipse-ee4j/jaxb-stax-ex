@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Distribution License v. 1.0, which is available at
@@ -10,8 +10,8 @@
 
 package org.jvnet.staxex;
 
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
+import jakarta.activation.DataHandler;
+import jakarta.activation.DataSource;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -28,7 +28,7 @@ import java.util.logging.Logger;
 //import com.sun.xml.stream.writers.XMLStreamWriterImpl;
 //import java.io.FileNotFoundException;
 //import java.io.FileWriter;
-//import javax.activation.FileDataSource;
+//import jakarta.activation.FileDataSource;
 
 /**
  * Binary data represented as base64-encoded string
