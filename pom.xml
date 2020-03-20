@@ -88,13 +88,13 @@
         <dependency>
             <groupId>jakarta.activation</groupId>
             <artifactId>jakarta.activation-api</artifactId>
-            <version>1.2.2</version>
+            <version>2.0.0-rc1</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>2.3.3</version>
+            <version>3.0.0-RC1</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
@@ -320,13 +320,13 @@
                         <goals>
                             <goal>manifest</goal>
                         </goals>
-                        <configuration>>
+                        <configuration>
                             <instructions>
                                 <_removeheaders>Bnd-LastModified,Built-By,Include-Resource,Private-Package</_removeheaders>
                                 <Implementation-Build-Id>${project.version} - ${scmBranch}-${buildNumber}</Implementation-Build-Id>
                                 <Import-Package>
-                                    javax.activation;version=!,
-                                    javax.xml.bind.attachment;version=!,
+                                    jakarta.activation;version=!,
+                                    jakarta.xml.bind.attachment;version=!,
                                     *
                                 </Import-Package>
                             </instructions>
