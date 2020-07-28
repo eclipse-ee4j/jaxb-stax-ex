@@ -82,7 +82,7 @@
         <spotbugs.threshold>Low</spotbugs.threshold>
         <spotbugs.version>4.0.4</spotbugs.version>
         <activation.version>2.0.0</activation.version>
-        <jaxb-api.version>3.0.0</jaxb-api.version>
+        <xml.bind-api.version>3.0.0</xml.bind-api.version>
         <junit.version>4.13</junit.version>
 
         <config.dir>${project.basedir}/etc/config</config.dir>
@@ -100,7 +100,7 @@
             <dependency>
                 <groupId>jakarta.xml.bind</groupId>
                 <artifactId>jakarta.xml.bind-api</artifactId>
-                <version>${jaxb-api.version}</version>
+                <version>${xml.bind-api.version}</version>
             </dependency>
             <dependency>
                 <groupId>junit</groupId>
