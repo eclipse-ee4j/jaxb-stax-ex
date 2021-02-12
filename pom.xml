@@ -81,7 +81,7 @@
         <spotbugs.skip>false</spotbugs.skip>
         <spotbugs.threshold>Low</spotbugs.threshold>
         <spotbugs.version>4.2.0</spotbugs.version>
-        <activation.version>2.0.0</activation.version>
+        <activation.version>2.0.1</activation.version>
         <xml.bind-api.version>3.0.0</xml.bind-api.version>
         <junit.version>4.13.1</junit.version>
 
