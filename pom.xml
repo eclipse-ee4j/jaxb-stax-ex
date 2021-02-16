@@ -82,8 +82,8 @@
         <spotbugs.threshold>Low</spotbugs.threshold>
         <spotbugs.version>4.2.0</spotbugs.version>
         <activation.version>2.0.1</activation.version>
-        <xml.bind-api.version>3.0.0</xml.bind-api.version>
-        <junit.version>4.13.1</junit.version>
+        <xml.bind-api.version>3.0.1</xml.bind-api.version>
+        <junit.version>4.13.2</junit.version>
 
         <config.dir>${project.basedir}/etc/config</config.dir>
         <legal.doc.source>${project.basedir}</legal.doc.source>
