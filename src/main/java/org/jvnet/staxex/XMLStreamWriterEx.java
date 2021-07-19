@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Distribution License v. 1.0, which is available at
@@ -75,6 +75,7 @@ public interface XMLStreamWriterEx extends XMLStreamWriter {
      *      this mandatory parameter identifies the MIME type of the binary data.
      *      If the MIME type isn't known by the caller, "application/octet-stream" can
      *      be always used to indicate "I don't know." Never null.
+     * @throws XMLStreamException for errors
      */
     void writeBinary(byte[] data, int start, int len, String contentType) throws XMLStreamException;
 
@@ -89,6 +90,7 @@ public interface XMLStreamWriterEx extends XMLStreamWriter {
      *
      * @param data
      *      always non-null. After this method call, the callee owns the data handler.
+     * @throws XMLStreamException for errors
      */
     void writeBinary(DataHandler data) throws XMLStreamException;
 
@@ -110,6 +112,7 @@ public interface XMLStreamWriterEx extends XMLStreamWriter {
      *
      * @return
      *      always return a non-null {@link OutputStream}.
+     * @throws XMLStreamException for errors
      */
     OutputStream writeBinary(String contentType) throws XMLStreamException;
 
@@ -128,6 +131,7 @@ public interface XMLStreamWriterEx extends XMLStreamWriter {
      *      recommended (so that the consumer interested in seeing it
      *      as binary data may take advantage of mor efficient
      *      data representation.)
+     * @throws XMLStreamException for errors
      *
      */
     void writePCDATA(CharSequence data) throws XMLStreamException;
@@ -135,5 +139,6 @@ public interface XMLStreamWriterEx extends XMLStreamWriter {
     /**
      * {@inheritDoc}
      */
+    @Override
     NamespaceContextEx getNamespaceContext();
 }

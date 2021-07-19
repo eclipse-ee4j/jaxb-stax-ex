@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2010, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Distribution License v. 1.0, which is available at
@@ -118,6 +118,8 @@ public abstract class StreamingDataHandler extends DataHandler implements Closea
      * behave in undefined fashion. For a simliar reason,
      * calling this method multiple times will cause
      * undefined behavior.  
+     * @param dst
+     * @throws IOException for errors
      */
     public abstract void moveTo(File dst) throws IOException;
 
@@ -126,7 +128,9 @@ public abstract class StreamingDataHandler extends DataHandler implements Closea
      * (such as an attachment in a web service read from a temp
      * file will be deleted.) After calling this method, it is
      * illegal to call any other methods.
+     * @throws IOException for errors
      */
+    @Override
     public abstract void close() throws IOException;
 
     public String getHrefCid() {

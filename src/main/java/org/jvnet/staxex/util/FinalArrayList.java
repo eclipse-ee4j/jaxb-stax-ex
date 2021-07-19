@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Distribution License v. 1.0, which is available at
@@ -16,6 +16,7 @@ import java.util.Collection;
 /**
  * {@link ArrayList} with a final marker to help JIT.
  * @author Kohsuke Kawaguchi
+ * @param <T> element type
  */
 public final class FinalArrayList<T> extends ArrayList<T> {
     public FinalArrayList(int initialCapacity) {
@@ -25,7 +26,7 @@ public final class FinalArrayList<T> extends ArrayList<T> {
     public FinalArrayList() {
     }
 
-    public FinalArrayList(Collection collection) {
+    public FinalArrayList(Collection<? extends T> collection) {
         super(collection);
     }
 }

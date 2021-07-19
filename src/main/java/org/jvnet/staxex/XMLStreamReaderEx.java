@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2018 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Distribution License v. 1.0, which is available at
@@ -145,6 +145,8 @@ public interface XMLStreamReaderEx extends XMLStreamReader {
      *
      * @throws IllegalStateException
      *      if the parser is not pointing at characters infoset item.
+     * @throws XMLStreamException
+     *      for other errors.
      *
      * TODO:
      *      fix the dependency to JAXB internal class.
@@ -154,6 +156,7 @@ public interface XMLStreamReaderEx extends XMLStreamReader {
     /**
      * {@inheritDoc}
      */
+    @Override
     NamespaceContextEx getNamespaceContext();
 
     /**
@@ -164,6 +167,8 @@ public interface XMLStreamReaderEx extends XMLStreamReader {
      * The parser can often do this more efficiently than
      * {@code getElementText().trim()}.
      *
+     * @throws XMLStreamException for errors
+     * @return 
      * @see #getElementText() 
      */
     String getElementTextTrim() throws XMLStreamException;
