@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Distribution License v. 1.0, which is available at
@@ -186,10 +186,12 @@ public class Base64Data implements CharSequence, Cloneable {
             super(source);
         }
 
+        @Override
         public InputStream readOnce() throws IOException {
             return getDataSource().getInputStream();
         }
 
+        @Override
         public void moveTo(File dst) throws IOException {
             FileOutputStream fout = new FileOutputStream(dst);
             try {
@@ -199,6 +201,7 @@ public class Base64Data implements CharSequence, Cloneable {
             }
         }
 
+        @Override
         public void close() throws IOException {
             // nothing to do
         }
@@ -210,10 +213,12 @@ public class Base64Data implements CharSequence, Cloneable {
             super(dh.getDataSource());
         }
 
+        @Override
         public InputStream readOnce() throws IOException {
             return getDataSource().getInputStream();
         }
 
+        @Override
         public void moveTo(File dst) throws IOException {
             byte[] buf = new byte[8192];
             InputStream in = null;
@@ -246,6 +251,7 @@ public class Base64Data implements CharSequence, Cloneable {
             }
         }
 
+        @Override
         public void close() throws IOException {
             // nothing to do
         }
@@ -339,6 +345,7 @@ public class Base64Data implements CharSequence, Cloneable {
      * Gets the number of characters needed to represent
      * this binary data in the base64 encoding.
      */
+    @Override
     public int length() {
         // for each 3 bytes you use 4 chars
         // if the remainder is 1 or 2 there will be 4 more
@@ -350,6 +357,7 @@ public class Base64Data implements CharSequence, Cloneable {
      * Encode this binary data in the base64 encoding
      * and returns the character at the specified position.
      */
+    @Override
     public char charAt(int index) {
         // we assume that the length() method is called before this method
         // (otherwise how would the caller know that the index is valid?)
@@ -403,6 +411,7 @@ public class Base64Data implements CharSequence, Cloneable {
      * which doesn't happen that much for base64.
      * So this method should be smaller than faster.
      */
+    @Override
     public CharSequence subSequence(int start, int end) {
         StringBuilder buf = new StringBuilder();
         get();  // fill in the buffer if we haven't done so
@@ -492,7 +501,8 @@ public class Base64Data implements CharSequence, Cloneable {
             return System.getProperty(propName);
         } else {
             return (String) java.security.AccessController.doPrivileged(
-                    new java.security.PrivilegedAction() {
+                    new java.security.PrivilegedAction<Object>() {
+                        @Override
                         public java.lang.Object run() {
                             return System.getProperty(propName);
                         }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2020 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Distribution License v. 1.0, which is available at
@@ -34,13 +34,13 @@ import org.jvnet.staxex.XMLStreamWriterEx;
  * @author Ryan Shoemaker
  */
 public class XMLStreamReaderToXMLStreamWriter {
-    
+
     static public class Breakpoint {
         protected XMLStreamReader reader;
         protected XMLStreamWriter writer;
-        
-        public Breakpoint(XMLStreamReader r, XMLStreamWriter w) { reader = r; writer = w; }    
-        
+
+        public Breakpoint(XMLStreamReader r, XMLStreamWriter w) { reader = r; writer = w; }
+
         public XMLStreamReader reader() { return reader; }
         public XMLStreamWriter writer() { return writer; }
         public boolean proceedBeforeStartElement() { return true; }
@@ -55,15 +55,20 @@ public class XMLStreamReaderToXMLStreamWriter {
     private char[] buf;
 
     boolean optimizeBase64Data = false;
-    
+
     AttachmentMarshaller mtomAttachmentMarshaller;
-    
+
+    public XMLStreamReaderToXMLStreamWriter() {
+        super();
+    }
+
     /**
      * Reads one subtree and writes it out.
      *
      * <p>
      * The {@link XMLStreamWriter} never receives a start/end document event.
      * Those need to be written separately by the caller.
+     * @throws javax.xml.stream.XMLStreamException
      */
     public void bridge(XMLStreamReader in, XMLStreamWriter out) throws XMLStreamException {
         bridge(in, out, null);
@@ -72,14 +77,14 @@ public class XMLStreamReaderToXMLStreamWriter {
     public void bridge(Breakpoint breakPoint) throws XMLStreamException {
         bridge(breakPoint.reader(), breakPoint.writer(), breakPoint);
     }
-    
+
     private void bridge(XMLStreamReader in, XMLStreamWriter out, Breakpoint breakPoint) throws XMLStreamException {
         assert in!=null && out!=null;
         this.in = in;
         this.out = out;
 
         optimizeBase64Data = (in instanceof XMLStreamReaderEx);
-        
+
         if (out instanceof XMLStreamWriterEx && out instanceof MtomStreamWriter) {
             mtomAttachmentMarshaller = ((MtomStreamWriter) out).getAttachmentMarshaller();
         }
@@ -150,13 +155,13 @@ public class XMLStreamReaderToXMLStreamWriter {
 
 
     protected void handleCharacters() throws XMLStreamException {
-        
+
         CharSequence c = null;
-        
+
         if (optimizeBase64Data) {
             c = ((XMLStreamReaderEx)in).getPCDATA();
         }
-        
+
         if ((c != null) && (c instanceof Base64Data)) {
             if (mtomAttachmentMarshaller != null) {
                 Base64Data b64d = (Base64Data) c;
@@ -211,6 +216,7 @@ public class XMLStreamReaderToXMLStreamWriter {
      *
      * <p>
      * Used from {@link #handleStartElement()}.
+     * @throws javax.xml.stream.XMLStreamException
      */
     protected void handleAttribute(int i) throws XMLStreamException {
         String nsUri = in.getAttributeNamespace(i);
@@ -261,7 +267,7 @@ public class XMLStreamReaderToXMLStreamWriter {
     }
 
     private int getEventType() throws XMLStreamException {
-        int event = in.getEventType();        
+        int event = in.getEventType();
      // if the parser is at the start tag, proceed to the first element
         //Note - need to do this every time because we could be using a composite reader
         if(event == XMLStreamConstants.START_DOCUMENT) {
