@@ -19,6 +19,9 @@ import java.util.Collection;
  * @param <T> element type
  */
 public final class FinalArrayList<T> extends ArrayList<T> {
+
+    private static final long serialVersionUID = 1848322681043875368L;
+
     public FinalArrayList(int initialCapacity) {
         super(initialCapacity);
     }

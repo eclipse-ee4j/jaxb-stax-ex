@@ -278,7 +278,6 @@
                 <configuration>
                     <skip>${spotbugs.skip}</skip>
                     <threshold>${spotbugs.threshold}</threshold>
-                    <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
                     <fork>true</fork>
                 </configuration>
             </plugin>
