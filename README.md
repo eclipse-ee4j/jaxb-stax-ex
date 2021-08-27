@@ -8,6 +8,9 @@
 
 # Extended StAX API
 
+[![Build Status](https://github.com/eclipse-ee4j/jaxb-stax-ex/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/eclipse-ee4j/angus-activation/actions/workflows/maven.yml?branch=master)
+[![Jakarta Staging (Snapshots)](https://img.shields.io/nexus/s/https/jakarta.oss.sonatype.org/org.jvnet.staxex/stax-ex.svg)](https://jakarta.oss.sonatype.org/content/repositories/staging/org/jvnet/staxex/stax-ex/)
+
 This project contains a few extensions to complement JSR-173 StAX API in the following areas:
 
 * Enable parser instance reuse (which is important in the high-performance environment
@@ -35,3 +38,4 @@ the terms of [Eclipse Contributor Agreement](http://www.eclipse.org/legal/ECA.ph
 * [JSR-173 specification documents](https://www.jcp.org/en/jsr/detail?id=173)
 * [Javadoc](https://javadoc.io/doc/org.jvnet.staxex/stax-ex/latest/org.jvnet.staxex/module-summary.html)
 * [Mailing list](https://accounts.eclipse.org/mailing-list/jaxb-impl-dev)
+* [Nightly build job](https://ci.eclipse.org/jaxb-impl/job/stax-ex-master-build/)
