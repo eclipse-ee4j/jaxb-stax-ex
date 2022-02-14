@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 2010, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Distribution License v. 1.0, which is available at
@@ -58,7 +58,7 @@ public abstract class StreamingDataHandler extends DataHandler implements Closea
      * <p>
      * This is used as a signal from the caller that there will
      * be no further {@link #getInputStream()} invocation nor
-     * {@link #readOnce()} invocation on this object (which would
+     * {@code readOnce()} invocation on this object (which would
      * result in {@link IOException}.)
      *
      * <p>
@@ -68,7 +68,7 @@ public abstract class StreamingDataHandler extends DataHandler implements Closea
      *
      * <p>
      * Note that it is legal to call {@link #getInputStream()}
-     * multiple times and then call {@link #readOnce()} afterward.
+     * multiple times and then call {@code readOnce()} afterward.
      * Streams created such a way can be read in any order &mdash;
      * there's no requirement that streams created earlier must be read
      * first.
@@ -118,7 +118,6 @@ public abstract class StreamingDataHandler extends DataHandler implements Closea
      * behave in undefined fashion. For a simliar reason,
      * calling this method multiple times will cause
      * undefined behavior.  
-     * @param dst
      * @throws IOException for errors
      */
     public abstract void moveTo(File dst) throws IOException;
