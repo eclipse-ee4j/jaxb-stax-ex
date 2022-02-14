@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Distribution License v. 1.0, which is available at
@@ -68,7 +68,6 @@ public class XMLStreamReaderToXMLStreamWriter {
      * <p>
      * The {@link XMLStreamWriter} never receives a start/end document event.
      * Those need to be written separately by the caller.
-     * @throws javax.xml.stream.XMLStreamException
      */
     public void bridge(XMLStreamReader in, XMLStreamWriter out) throws XMLStreamException {
         bridge(in, out, null);
@@ -216,7 +215,6 @@ public class XMLStreamReaderToXMLStreamWriter {
      *
      * <p>
      * Used from {@link #handleStartElement()}.
-     * @throws javax.xml.stream.XMLStreamException
      */
     protected void handleAttribute(int i) throws XMLStreamException {
         String nsUri = in.getAttributeNamespace(i);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Distribution License v. 1.0, which is available at
@@ -317,7 +317,6 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
 
     /**
      * Return an attribute's local name.Handle the case of DOM level 1 nodes.
-     * @return 
      */
     @Override
     public String getAttributeLocalName(int index) {
@@ -417,7 +416,6 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
 
     /**
      * Return an element's local name.Handle the case of DOM level 1 nodes.
-     * @return 
      */
     @Override
     public String getLocalName() {
@@ -502,8 +500,6 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
      * This method is not particularly fast, but shouldn't be called very 
      * often.If we start to use it more, we should keep track of the 
  NS declarations using a NamespaceContext implementation instead.
-     * @param prefix
-     * @return 
      */
     @Override
     public String getNamespaceURI(String prefix) {

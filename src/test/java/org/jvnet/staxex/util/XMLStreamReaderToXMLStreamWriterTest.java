@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Distribution License v. 1.0, which is available at
@@ -33,7 +33,6 @@ public class XMLStreamReaderToXMLStreamWriterTest {
      * namespace prefixes to the XMLStreamWriter because some writers used by us
      * cannot handle the null prefix
      *
-     * @throws XMLStreamException
      */
     @Test
     public void testNullNamespacePrefix() throws XMLStreamException {
