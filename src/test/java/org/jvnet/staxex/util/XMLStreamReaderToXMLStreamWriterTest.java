@@ -37,6 +37,8 @@ public class XMLStreamReaderToXMLStreamWriterTest {
     @Test
     public void testNullNamespacePrefix() throws XMLStreamException {
         XMLInputFactory infact = XMLInputFactory.newInstance();
+        infact.setProperty(XMLInputFactory.IS_SUPPORTING_EXTERNAL_ENTITIES, false);
+        infact.setProperty(XMLInputFactory.SUPPORT_DTD, false);
         String xmlString = "<sendMessage xmlns=\"http://www.foo.bar/schema/\" xmlns:ns2=\"http://www.foo.bar/types/\">"
                 + "<message xsi:type=\"ns2:someType\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"/>"
                 + "</sendMessage>";
