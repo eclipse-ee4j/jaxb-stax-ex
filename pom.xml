@@ -88,8 +88,8 @@
 
         <config.dir>${project.basedir}/etc/config</config.dir>
         <legal.doc.source>${project.basedir}</legal.doc.source>
-        <maven.compiler.release>11</maven.compiler.release>
-
+        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.testRelease>${maven.compiler.release}</maven.compiler.testRelease>
     </properties>
 
     <dependencyManagement>
