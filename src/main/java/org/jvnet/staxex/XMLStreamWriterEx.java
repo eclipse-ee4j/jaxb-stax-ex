@@ -104,7 +104,7 @@ public interface XMLStreamWriterEx extends XMLStreamWriter {
      * <p>
      * It is the caller's responsibility to write and close
      * a stream before it invokes any other methods on {@link XMLStreamWriter}.
-     *
+     * <p>
      * TODO: experimental. appreciate feedback
      * @param contentType
      *      See the content-type parameter of

@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2026 Contributors to the Eclipse Foundation.
  * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -45,7 +46,7 @@ class Base64Encoder {
 
     /**
      * Encodes a byte array into a char array by doing base64 encoding.
-     *
+     * <p>
      * The caller must supply a big enough buffer.
      *
      * @return

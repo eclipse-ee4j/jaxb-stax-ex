@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2026 Contributors to the Eclipse Foundation.
  * Copyright (c) 1997, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -161,13 +162,12 @@ public class XMLStreamReaderToXMLStreamWriter {
             c = ((XMLStreamReaderEx)in).getPCDATA();
         }
 
-        if ((c != null) && (c instanceof Base64Data)) {
+        if ((c instanceof Base64Data b64d)) {
             if (mtomAttachmentMarshaller != null) {
-                Base64Data b64d = (Base64Data) c;
                 ((XMLStreamWriterEx)out).writeBinary(b64d.getDataHandler());
             } else {
                 try {
-                    ((Base64Data)c).writeTo(out);
+                    b64d.writeTo(out);
                 } catch (IOException e) {
                     throw new XMLStreamException(e);
                 }
@@ -224,7 +224,7 @@ public class XMLStreamReaderToXMLStreamWriter {
              return;
          }
 
-        if(nsUri==null || prefix == null || prefix.equals("")) {
+        if(nsUri==null || prefix == null || prefix.isEmpty()) {
             out.writeAttribute(
                 in.getAttributeLocalName(i),
                 in.getAttributeValue(i)

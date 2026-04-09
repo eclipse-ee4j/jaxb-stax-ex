@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2026 Contributors to the Eclipse Foundation.
  * Copyright (c) 1997, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -99,7 +100,7 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
 
     /**
      * Namespace declarations on one element.
-     *
+     * <p>
      * Instances are reused.
      */
     protected static final class Scope {
@@ -116,7 +117,7 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
         /**
          * Additional namespace declarations obtained as a result of "fixing" DOM tree,
          * which were not part of the original DOM tree.
-         *
+         * <p>
          * One entry occupies two spaces (prefix followed by URI.)
          */
         final FinalArrayList<String> additionalNamespaces = new FinalArrayList<>();
@@ -182,7 +183,7 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
          *      Prefix to look up.
          */
         String getNamespaceURI(String prefix) {
-            String nsDeclName = prefix.length()==0 ? "xmlns" : "xmlns:"+prefix;
+            String nsDeclName = prefix.isEmpty() ? "xmlns" : "xmlns:"+prefix;
 
             for( Scope sp=this; sp!=null; sp=sp.parent ) {
                 for( int i=sp.currentNamespaces.size()-1; i>=0; i--) {
@@ -202,6 +203,7 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
     public DOMStreamReader() {
     }
 
+    @SuppressWarnings({"this-escape"})
     public DOMStreamReader(Node node) {
         setCurrentNode(node);
     }
@@ -250,7 +252,7 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
         ensureNs(_current);
         for( int i=_currentAttributes.size()-1; i>=0; i-- ) {
             Attr a = _currentAttributes.get(i);
-            if(fixNull(a.getNamespaceURI()).length()>0)
+            if(!fixNull(a.getNamespaceURI()).isEmpty())
                 ensureNs(a);    // no need to declare "" for attributes in the default namespace
         }
     }
@@ -261,7 +263,7 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
      * <p>
      * Makes sure that the namespace URI/prefix used in the given node is available,
      * and if not, declare it on the current scope to "fix" it.
-     *
+     * <p>
      * It's often common to create DOM trees without putting namespace declarations,
      * and this makes sure that such DOM tree will be properly marshalled.
      */
@@ -273,7 +275,7 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
         
         String currentUri = scope.getNamespaceURI(prefix);
 
-        if(prefix.length()==0) {
+        if(prefix.isEmpty()) {
             currentUri = fixNull(currentUri);
             if(currentUri.equals(uri))
                 return; // declared correctly
@@ -462,7 +464,7 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
     /**
      * Verifies the current state to see if we can return the scope, and do so
      * if appropriate.
-     *
+     * <p>
      * Used to implement a bunch of StAX API methods that have the same usage restriction.
      */
     private Scope getCheckedScope() {
@@ -519,7 +521,7 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
 
         // then ancestors above start node
         Node node = findRootElement();
-        String nsDeclName = prefix.length()==0 ? "xmlns" : "xmlns:"+prefix;
+        String nsDeclName = prefix.isEmpty() ? "xmlns" : "xmlns:"+prefix;
         while (node.getNodeType() != DOCUMENT_NODE) {
             // Is ns declaration on this element?
             NamedNodeMap namedNodeMap = node.getAttributes();
@@ -603,7 +605,7 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
         // This is an incorrect implementation,
         // but AFAIK it's not used in the JAX-WS runtime
         String prefix = getPrefix(nsUri);
-        if(prefix==null)    return Collections.<String>emptyList().iterator();
+        if(prefix==null)    return Collections.emptyIterator();
         else                return Collections.singletonList(prefix).iterator();
     }
 
@@ -692,7 +694,7 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
     @Override
     public boolean hasText() {
         if (_state == CHARACTERS || _state == CDATA || _state == COMMENT || _state == ENTITY_REFERENCE) {
-            return getText().trim().length() > 0;
+            return !getText().trim().isEmpty();
         }
         return false;
     }
@@ -725,31 +727,22 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
     @Override
     public boolean isWhiteSpace() {
         if (_state == CHARACTERS || _state == CDATA)
-            return getText().trim().length()==0;
+            return getText().trim().isEmpty();
         return false;
     }
 
     private static int mapNodeTypeToState(int nodetype) {
-        switch (nodetype) {
-            case CDATA_SECTION_NODE:
-                return CDATA;
-            case COMMENT_NODE:
-                return COMMENT;
-            case ELEMENT_NODE:
-                return START_ELEMENT;
-            case ENTITY_NODE:
-                return ENTITY_DECLARATION;
-            case ENTITY_REFERENCE_NODE:
-                return ENTITY_REFERENCE;
-            case NOTATION_NODE:
-                return NOTATION_DECLARATION;
-            case PROCESSING_INSTRUCTION_NODE:
-                return PROCESSING_INSTRUCTION;
-            case TEXT_NODE:
-                return CHARACTERS;
-            default:
-                throw new RuntimeException("DOMStreamReader: Unexpected node type");
-        }
+        return switch (nodetype) {
+            case CDATA_SECTION_NODE -> CDATA;
+            case COMMENT_NODE -> COMMENT;
+            case ELEMENT_NODE -> START_ELEMENT;
+            case ENTITY_NODE -> ENTITY_DECLARATION;
+            case ENTITY_REFERENCE_NODE -> ENTITY_REFERENCE;
+            case NOTATION_NODE -> NOTATION_DECLARATION;
+            case PROCESSING_INSTRUCTION_NODE -> PROCESSING_INSTRUCTION;
+            case TEXT_NODE -> CHARACTERS;
+            default -> throw new RuntimeException("DOMStreamReader: Unexpected node type");
+        };
     }
 
     @Override
@@ -765,7 +758,7 @@ public class DOMStreamReader implements XMLStreamReader, NamespaceContext {
 
                 Text t = (Text)_current;
                 wholeText = t.getWholeText();
-                if(wholeText.length()==0)
+                if(wholeText.isEmpty())
                     continue;   // nope. this is empty text.
                 return CHARACTERS;
             case START_ELEMENT:

@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2026 Contributors to the Eclipse Foundation.
  * Copyright (c) 2013, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -25,18 +26,18 @@ public interface StAxSOAPBody {
     /**
      * The StAxSOAPBody represents the StAX source of SOAPBody payload.
      */
-    public static interface Payload {
+    interface Payload {
 
         /**
          * Retrieve payload qname without materializing its contents
          *
          * @return qname
          */
-        public QName getPayloadQName();
+        QName getPayloadQName();
 
-        public XMLStreamReader readPayload() throws XMLStreamException;
+        XMLStreamReader readPayload() throws XMLStreamException;
 
-        public void writePayloadTo(XMLStreamWriter writer) throws XMLStreamException;
+        void writePayloadTo(XMLStreamWriter writer) throws XMLStreamException;
 
         /**
          * Retrieve payload attribute value without materializing its contents
@@ -45,7 +46,7 @@ public interface StAxSOAPBody {
          * @return payload attribute value
          * @throws XMLStreamException for errors
          */
-        public String getPayloadAttributeValue(String localName) throws XMLStreamException;
+        String getPayloadAttributeValue(String localName) throws XMLStreamException;
 
         /**
          * Retrieve payload attribute value without materializing its contents
@@ -54,14 +55,14 @@ public interface StAxSOAPBody {
          * @return payload attribute value
          * @throws XMLStreamException for errors
          */
-        public String getPayloadAttributeValue(QName qName) throws XMLStreamException;
+        String getPayloadAttributeValue(QName qName) throws XMLStreamException;
 
-        public void materialize() throws XMLStreamException;
+        void materialize() throws XMLStreamException;
     }
 
-    public void setPayload(Payload src) throws XMLStreamException;
+    void setPayload(Payload src) throws XMLStreamException;
 
-    public Payload getPayload() throws XMLStreamException;
+    Payload getPayload() throws XMLStreamException;
 
-    public boolean hasStaxPayload();
+    boolean hasStaxPayload();
 }
