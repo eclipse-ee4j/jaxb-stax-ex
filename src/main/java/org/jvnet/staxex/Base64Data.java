@@ -61,7 +61,7 @@ public class Base64Data implements CharSequence, Cloneable {
     private boolean dataCloneByRef;
     /**
      * Optional MIME type of {@link #data}.
-     *
+     * <p>
      * Unused when {@link #dataHandler} is set.
      * Use {@link DataHandler#getContentType()} in that case.
      */
@@ -194,11 +194,8 @@ public class Base64Data implements CharSequence, Cloneable {
 
         @Override
         public void moveTo(File dst) throws IOException {
-            FileOutputStream fout = new FileOutputStream(dst);
-            try {
+            try (FileOutputStream fout = new FileOutputStream(dst)) {
                 fout.write(data, 0, dataLen);
-            } finally {
-                fout.close();
             }
         }
 
@@ -222,32 +219,14 @@ public class Base64Data implements CharSequence, Cloneable {
         @Override
         public void moveTo(File dst) throws IOException {
             byte[] buf = new byte[8192];
-            InputStream in = null;
-            OutputStream out = null;
-            try {
-                in = getDataSource().getInputStream();
-                out = new FileOutputStream(dst);
+            try (InputStream in = getDataSource().getInputStream();
+                 OutputStream out = new FileOutputStream(dst)) {
                 while (true) {
                     int amountRead = in.read(buf);
                     if (amountRead == -1) {
                         break;
                     }
                     out.write(buf, 0, amountRead);
-                }
-            } finally {
-                if (in != null) {
-                    try {
-                        in.close();
-                    } catch(IOException ioe) {
-                        // nothing to do
-                    }
-                }
-                if (out != null) {
-                    try {
-                        out.close();
-                    } catch(IOException ioe) {
-                        // nothing to do
-                    }
                 }
             }
         }
@@ -322,7 +301,7 @@ public class Base64Data implements CharSequence, Cloneable {
 
     /**
      * Gets the length of the binary data counted in bytes.
-     *
+     * <p>
      * Note that if this object encapsulates {@link DataHandler},
      * this method would have to read the whole thing into {@code byte[]}
      * just to count the length, because {@link DataHandler}

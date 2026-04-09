@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2026 Contributors to the Eclipse Foundation.
  * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -10,6 +11,7 @@
 
 package org.jvnet.staxex.util;
 
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -20,6 +22,7 @@ import java.util.Collection;
  */
 public final class FinalArrayList<T> extends ArrayList<T> {
 
+    @Serial
     private static final long serialVersionUID = 1848322681043875368L;
 
     public FinalArrayList(int initialCapacity) {

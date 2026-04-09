@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2026 Contributors to the Eclipse Foundation.
  * Copyright (c) 1997, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -21,12 +22,9 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class XMLStreamReaderToXMLStreamWriterTest {
-
-    public XMLStreamReaderToXMLStreamWriterTest() {
-    }
+class XMLStreamReaderToXMLStreamWriterTest {
 
     /**
      * Tests that XMLStreamReaderToXMLStreamWriter.bridge does not send null
@@ -35,7 +33,7 @@ public class XMLStreamReaderToXMLStreamWriterTest {
      *
      */
     @Test
-    public void testNullNamespacePrefix() throws XMLStreamException {
+    void testNullNamespacePrefix() throws XMLStreamException {
         XMLInputFactory infact = XMLInputFactory.newInstance();
         String xmlString = "<sendMessage xmlns=\"http://www.foo.bar/schema/\" xmlns:ns2=\"http://www.foo.bar/types/\">"
                 + "<message xsi:type=\"ns2:someType\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"/>"

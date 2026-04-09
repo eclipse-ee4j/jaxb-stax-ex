@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2026 Contributors to the Eclipse Foundation.
  * Copyright (c) 1997, 2022 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -57,7 +58,7 @@ import javax.xml.stream.XMLStreamException;
  * @author Paul Sandoz
  */
 public interface XMLStreamReaderEx extends XMLStreamReader {
-    ///**
+    // /**
     // * Works like {@link XMLStreamReader#getText()}
     // * but returns text as {@link DataSource}.
     // *
@@ -105,7 +106,7 @@ public interface XMLStreamReaderEx extends XMLStreamReader {
     // */
     //DataSource getTextAsDataHandler() throws XMLStreamException;
 
-    ///**
+    // /**
     // * Works like {@link XMLStreamReader#getText()}
     // * but returns text as {@link byte[]}.
     // *
@@ -147,9 +148,6 @@ public interface XMLStreamReaderEx extends XMLStreamReader {
      *      if the parser is not pointing at characters infoset item.
      * @throws XMLStreamException
      *      for other errors.
-     *
-     * TODO:
-     *      fix the dependency to JAXB internal class.
      */
     CharSequence getPCDATA() throws XMLStreamException;
 
