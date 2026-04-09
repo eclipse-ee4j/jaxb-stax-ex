@@ -16,5 +16,6 @@
 .project
 .settings
 .commented
+/CODE_OF_CONDUCT.md
 /LICENSE.md
 /etc/config/copyright-exclude
