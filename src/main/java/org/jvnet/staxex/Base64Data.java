@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2026 Contributors to the Eclipse Foundation.
  * Copyright (c) 1997, 2021 Oracle and/or its affiliates. All rights reserved.
  *
  * This program and the accompanying materials are made available under the
@@ -439,7 +440,7 @@ public class Base64Data implements CharSequence, Cloneable {
     static {
         int bufSize = 1024;
         try {
-            String bufSizeStr = getProperty("org.jvnet.staxex.Base64DataStreamWriteBufferSize");
+            String bufSizeStr = System.getProperty("org.jvnet.staxex.Base64DataStreamWriteBufferSize");
             if (bufSizeStr != null) {
                 bufSize = Integer.parseInt(bufSizeStr);
             }
@@ -496,20 +497,6 @@ public class Base64Data implements CharSequence, Cloneable {
         }
     }
 
-    static String getProperty(final String propName) {
-        if (System.getSecurityManager() == null) {
-            return System.getProperty(propName);
-        } else {
-            return (String) java.security.AccessController.doPrivileged(
-                    new java.security.PrivilegedAction<Object>() {
-                        @Override
-                        public java.lang.Object run() {
-                            return System.getProperty(propName);
-                        }
-                    });
-        }
-    }
-    
 //    public static void main(String[] args) throws FileNotFoundException, IOException, XMLStreamException {
 //        Base64Data data = new Base64Data();
 //
